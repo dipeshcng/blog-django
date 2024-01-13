@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+
+<h3>BlogDetail</h3><hr>
+<h3>{{blog.title}}(Viewed {{blog.view_count}} times)</h3>
+{% if request.user.is_authenticated %}
+<a class="btn btn-info" href="{% url 'blogapp:blogupdate' blog.id %}">update</a>
+<a class="btn btn-danger" href="{% url 'blogapp:blogdelete' blog.id %}">delete</a>
+{% endif %}
+<p>posted on:{{blog.date}}</p>
+<img src="{{blog.image.url}}">
+<p>{{blog.description}}</p><hr>
+<p>Written by:{{blog.author}}</p>
+
+{% endblock %}

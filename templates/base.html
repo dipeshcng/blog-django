@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<title>{% block title %}{% endblock %}</title>
+
+</head>
+<body class="container">
+	<style type="text/css">
+		body{
+			background-color: lightblue;
+		}
+	</style>
+<!-- 	<a href="/">home</a>
+	<a href="/contact/">contact</a>
+	<a href="/profile/">profile</a>
+	<a href="/nepal/">Nepal</a>
+	<a href="/blog/list/">BlogList</a>
+	<a href="/event/list/">EventList</a> -->
+
+	
+	<h4 class="nav-bar" style="padding-left: 80px">
+	<a href="{% url 'blogapp:home' %}">home</a>|
+	<!-- <a href="{% url 'blogapp:contact' %}">contact</a>| -->
+	<!-- <a href="{% url 'blogapp:profile' %}">profile</a>| -->
+	<!-- <a href="{% url 'blogapp:Nepal' %}">nepal</a>| -->
+	<a href="{% url 'blogapp:bloglist' %}">bloglist</a>|
+	<!-- <a href="{% url 'blogapp:eventlist' %}">eventlist</a>| -->
+	<!-- <a href="{% url 'blogapp:newslist' %}">newslist</a>| -->
+	<a href="{% url 'blogapp:blogcreate' %}">createblog</a>|
+	<!-- <a href="{% url 'blogapp:eventcreate' %}">createevent</a>| -->
+	<a href="{% url 'blogapp:userreg' %}">newuser</a>|
+	{% if request.user.is_authenticated %}
+	{{request.user}}
+	<a href="/logout">logout</a>
+	{% else %}
+	<a href="/login/">login</a>
+	{% endif %}
+	<!-- Search form -->
+	<form method="GET" action="/search/">
+		
+		<input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search">
+		<button>search</button>
+	</form>
+
+	</h4>
+
+
+	{% block content %}
+	{% endblock %}
+</body>
+</html>

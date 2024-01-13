@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+CreateBlog
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-6">
+	<h3>Add new Blog</h3>
+	<form method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	<!-- (csrf=cross site reference forgery) -->
+	{{form.as_p}}
+	<button>submit</button>
+	</form>
+	</div>
+
+	
+	<div class="col-md-6">
+		<h3>Latest Blogs</h3>
+			{% for blog in bloglist|slice:"4" %}<hr>
+			<div class="row mb-2">
+				<div class="col-md-4">
+					<img class="img-fluid" src="{{blog.image.url}}">
+				</div>
+				<div class="col-md-8">
+					<h4><a href="{% url 'blogapp:blogdetail' blog.id %}">{{blog.title}}</a></h4>
+					<p>{{blog.description |truncatechars:"50"}}</p>
+				
+		
+				</div>
+			</div>
+			{% endfor %}
+	</div>
+</div>
+
+
+
+
+
+{% endblock %}

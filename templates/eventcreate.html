@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+CreateEvent
+{% endblock %}
+
+{% block content %}
+<h3>Add new Event</h3>
+<form method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	<!-- (csrf=cross site reference forgery) -->
+	{{form.as_p}}
+	<button>submit</button>	
+
+
+
+
+
+{% endblock %}

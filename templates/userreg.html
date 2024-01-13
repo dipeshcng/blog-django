@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+SignUP
+{% endblock %}
+
+{% block content %}
+<h3>SignUP</h3>
+{% if error %}
+<li class="text-danger">{{error}}</li>
+{% endif %}
+<form method="Post">
+	{% csrf_token %}
+	{{form.as_p}}
+	<button>Signup</button>
+</form>
+{% endblock %}

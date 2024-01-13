@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+BlogList
+{% endblock %}
+
+{% block content %}
+<h3>BlogList</h3><hr>
+{% for blog in allblogs %}
+
+<!-- <h4><a href="/blog/{{blog.id}}/detail">  {{blog.title}}</a></h4> -->
+<h4><a href="{% url 'blogapp:blogdetail' blog.id %}">  {{blog.title}}</a></h4>
+<p>Id:{{blog.id}}</p>
+<img src="{{blog.image.url}}" width="500">
+
+<!-- <p>{{blog.description}}</p>
+<p>posted on:{{blog.date}}</p> -->
+
+
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+
+<h3>NewsDetail</h3><hr>
+<h3>{{news.title}}</h3>
+<h4>{{news.category.title}}</h4>
+<p>posted on:{{news.date}}</p>
+<img src="{{news.image.url}}" width="800">
+<p>{{news.detail}}</p><hr>
+<br>
+
+<h3>Related News</h3><hr>
+
+<div class="row">
+	{% for article in news.category.relatednews.all %}
+
+	{% if article.id != news.id %}
+
+	<div class="col-md-3">
+		<h4><a href="{% url 'blogapp:newsdetail' article.id %}">{{article.title}}</a></h4>
+		<img src="{{article.image.url}}" class="img-fluid">
+	</div>
+
+	{% endif %}
+	{% endfor %}
+
+	
+</div>
+
+
+
+{% endblock %}

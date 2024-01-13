@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+
+{% for category in categorylist %}
+	<a href="{% url 'blogapp:categorydetail' category.id %}">{{category.title}}</a>|
+{% endfor %}
+
+	<div class="row">
+		<div class="col-md-6">
+			<h3>Latest Blogs</h3>
+			{% for blog in bloglist|slice:"3" %}<hr>
+			<div class="row mb-2">
+				<div class="col-md-4">
+					<img class="img-fluid" src="{{blog.image.url}}">
+				</div>
+				<div class="col-md-8">
+					<h4><a href="{% url 'blogapp:blogdetail' blog.id %}">{{blog.title}}</a></h4>
+					<p>{{blog.description |truncatechars:"50"}}</p>
+					
+				</div>
+			</div>
+
+			{% endfor %}
+		</div>
+			
+
+		<div class="col-md-6">
+			<h3>Latest News</h3><hr>
+			{% for news in newslist|slice:"3" %}
+			<div class="row mb-2">
+				<div class="col-md-4">
+					<img class="img-fluid" src="{{news.image.url}}">
+				</div>
+				<div class="col-md-8">
+					<h4><a href="{% url 'blogapp:newsdetail' news.id %}">{{news.title}}</a></h4>
+					<p>{{news.detail |truncatechars:"50"}}</p>
+					
+				</div>
+			</div>
+
+			{% endfor %}
+		</div>
+			
+	</div>
+
+	<h3>Latest Event</h3>
+	<div class="row">
+		{% for event in eventlist %}
+		<div class="col-md-4">
+			<img  class="img-fluid" src="{{event.gallery.url}}">
+			<h4><a href="{% url 'blogapp:eventdetail' event.id %}">{{event.title}}</a></h4>
+			<p>{{event.detail|truncatechars:"50"}}</p>
+		</div>
+
+		{% endfor %}
+		
+	</div>
+
+{% endblock %}

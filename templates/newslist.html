@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+NewsList
+{% endblock %}
+
+{% block content %}
+<h3>NewsList</h3><hr>
+{% for news in allnews %}
+
+
+<h4><a href="{% url 'blogapp:newsdetail' news.pk %}">{{news.title|title}}</a></h4>
+<p>Id::{{news.id}}</p>
+<img src="{{news.image.url}}" width="500">
+<p>{{news.detail|truncatewords:"20"}}</p>
+<!-- <p>{{news.detail|truncatechars:"20"}}</p> -->
+<a class="btn btn-info" href="{% url 'blogapp:newsdetail' news.pk %}">read more </a>
+<p>posted {{news.date|timesince}} ago</p>
+
+
+{% endfor %}
+{% endblock %}

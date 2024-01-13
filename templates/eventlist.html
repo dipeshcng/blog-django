@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+EventList
+{% endblock %}
+
+{% block content %}
+<h3>EventList</h3><hr>
+{% for event in allevents %}
+
+
+<!-- <h4><a href="/event/{{event.id}}/detail/">{{event.title}}</a></h4> -->
+<h4><a href="{% url 'blogapp:eventdetail' event.pk %}">{{event.title|title}}</a></h4>
+<p>Id::{{event.id}}</p>
+<img src="{{event.gallery.url}}" width="500">
+<!-- <p>{{event.description}}</p> -->
+<p>posted:{{event.date|timeuntil}}</p>
+
+
+{% endfor %}
+{% endblock %}

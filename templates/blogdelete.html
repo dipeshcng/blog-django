@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+DeleteBlog
+{% endblock %}
+
+{% block content %}
+<h3>Delete Blog</h3>
+<form method="POST" action="{% url 'blogapp:blogdelete' object.id %}">
+	{% csrf_token %}
+	<h4>Delete {{object.title}}?</h4>
+	<button class="btn btn-danger" >delete</button>
+	<a href="/blog/list/">Cancel</a>
+</form>
+
+
+
+
+{% endblock %}

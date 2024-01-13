@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+contact
+{% endblock %}
+
+{% block content %}
+<h3>This is contact page</h3>
+<form method="Post">
+	{% csrf_token %}
+	{{form.as_p}}
+	<button>Send Message</button>
+</form>
+{% endblock %}
